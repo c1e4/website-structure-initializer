@@ -8,8 +8,6 @@ YELLOW="\e[33m"
 BLUE="\e[34m"
 MAGENTA="\e[35m"
 CYAN="\e[36m"
-#LIGHT_MAGENTA="\e[95m"
-#LIGHT_CYAN="\e[96m"
 BG_MAGENTA="\e[45m"
 BG_CYAN="\e[46m"
 NC="\e[0m" #No Color
@@ -24,7 +22,6 @@ else
 fi
 
 currentPath=$(pwd)
-#echo "Current path is: ${currentPath}"
 newDir=${currentPath}/${targetDir}
 
 #check if target directory already exists
@@ -45,19 +42,9 @@ if [ ! -d "${newDir}" ]; then
 	printf "${RED}Cannot create project directory, abort${NC}\n"
 	exit 1;
 else
-	#	echo -e "${CYAN}-----${ENDCOLOR}${MAGENTA}-----${ENDCOLOR}"
-	#	echo -e " STAGE #1. CREATE PROJECT DIRECTORY: ${GREEN}GOOD${NC}"
-	#	echo -e "${MAGENTA}-----${ENDCOLOR}${CYAN}-----${ENDCOLOR}"
-
 	echo ""
-	#echo -e "${CYAN}-----${ENDCOLOR}${MAGENTA}-----${ENDCOLOR}"
 	echo -e "${CYAN}\tSTATUS:${NC} ${GREEN}GOOD${NC}\n"
-	#echo -e "${MAGENTA}-----${ENDCOLOR}${CYAN}-----${ENDCOLOR}"
-
 fi
-
-#cd ${newDir}
-#echo "Currently inside: $(pwd)"
 
 echo -e "${CYAN}-----${NC}${MAGENTA}-----${NC}"
 echo -e "${MAGENTA} STAGE #2. CREATE INNER STRUCTURE ${NC}"
@@ -88,14 +75,12 @@ if [ ${acutalNumberOfFiles} -ne ${FILES_INSIDE} ]; then
 	printf "${RED}Cannot create inner structure, abort${NC}\n"
 	exit 1;
 else
+
+	printf "${CYAN}Project's innner structure established${NC}\n"
 	echo ""
-	#	echo -e "${CYAN}-----${ENDCOLOR}${MAGENTA}-----${ENDCOLOR}"
-	#echo -e "\tSTATUS: ${GREEN}GOOD${NC}\n"
 	echo -e "${CYAN}\tSTATUS:${NC} ${GREEN}GOOD${NC}\n"
-	#echo -e "${MAGENTA}-----${ENDCOLOR}${CYAN}-----${ENDCOLOR}"
 fi
 
-#echo "-------------------------"
 echo -e "${CYAN}-----${NC}${MAGENTA}-----${NC}"
 echo -e "${MAGENTA} STAGE #3. ADD GIT INTEGRATION${NC}"
 echo -e "${MAGENTA}-----${NC}${CYAN}-----${NC}"
@@ -111,18 +96,15 @@ gitActualMsg=$(git status)
 echo -e "${NC}"
 
 if [ "${gitActualMsg}" = "${GIT_READY_MSG}" ]; then
-	printf "${GREEN}Git successfully initialized${NC}\n"
-	echo""
+	#printf "${GREEN}Git successfully initialized${NC}\n"
 	echo -e "${CYAN}\tSTATUS:${NC} ${GREEN}GOOD${NC}\n"
-	#echo -e "${MAGENTA}-----${ENDCOLOR}${CYAN}-----${ENDCOLOR}"
 else
 	printf "${RED}Something went wrong with git initialization${NC}\n"
 fi
 
-echo -e "${CYAN}Opening in codium...${NC}"
+echo -e "${CYAN}Opening in codium...${NC}\n"
 codium .
 
-#echo "-------------------------"
 echo -e "${CYAN}-----${NC}${MAGENTA}-----${NC}"
-echo "GOOD LUCK!" | lolcat
-echo -e "${MAGENTA}-----${NC}${CYAN}-----${NC}"
+echo -e "GOOD LUCK!" | lolcat
+echo -e "${MAGENTA}-----${NC}${CYAN}-----${NC}\n"
