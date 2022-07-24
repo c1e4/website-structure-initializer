@@ -18,11 +18,8 @@ if [ $# -eq 0 ];  then
 	echo "No arguments provided."
 	read -p 'Enter the directory path: ' targetDir;
 else
-	targetDir=$1
+	newDir=$1
 fi
-
-currentPath=$(pwd)
-newDir=${currentPath}/${targetDir}
 
 #check if target directory already exists
 if [[ -d "${newDir}" ]]; then
