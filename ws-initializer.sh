@@ -43,7 +43,26 @@ fi
 
 echo "-------------------------"
 echo "Created files: $(ls -R)"
-echo "Please, verify. Opening in vscode in 1s..."
+echo "Please, verify"
+sleep 3s
 echo "-------------------------"
+
+echo "-------------------------"
+echo "Add git integration: "
+git init
+git add .
+git commit -m "Init commit"
+GIT_READY_MSG="On branch master
+nothing to commit, working tree clean"
+gitActualMsg=$(git status)
+
+if [ "${gitActualMsg}" = "${GIT_READY_MSG}" ]; then
+	printf "${GREEN}Git successfully initialized${NC}\n"
+else
+	printf "${RED}Something went wrong with git initialization${NC}\n"
+fi
+
+echo "-------------------------"
+echo "Opening in codium..."
 sleep 1s
 codium .
