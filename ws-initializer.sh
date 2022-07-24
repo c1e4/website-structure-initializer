@@ -51,7 +51,7 @@ cd ${newDir}
 #echo "Currently inside: $(pwd)"
 
 mkdir pages css fonts images js
-touch index.html ./css/index.css
+touch index.html ./css/style.css ./js/script.js
 
 #copy the "ideal" .gitignore file
 GITIGNORE_PATH="${HOME}/Projects/Web/trivia/gitignore-ideal/.gitignore"
