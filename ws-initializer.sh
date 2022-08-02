@@ -50,8 +50,8 @@ echo -e "${MAGENTA}-----${ENDCOLOR}${CYAN}-----${ENDCOLOR}"
 cd ${newDir}
 #echo "Currently inside: $(pwd)"
 
-mkdir pages css fonts images js
-touch index.html ./css/style.css ./js/script.js
+mkdir pages css fonts images js scss
+touch index.html ./css/style.css ./js/script.js ./scss/style.scss 
 
 #copy the "ideal" .gitignore file
 GITIGNORE_PATH="${HOME}/Projects/Web/trivia/gitignore-ideal/.gitignore"
@@ -64,7 +64,7 @@ else
 fi
 
 #predictable output of ls -a when directory populated
-FILES_INSIDE=9
+FILES_INSIDE=10
 
 #check if inner structure has been created
 acutalNumberOfFiles=$(ls -a | wc -l)
