@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#Initial directory (script file location)
+SCRIPT_DIR=$(pwd)
+echo "${SCRIPT_DIR}"
+
 #Colors
 BLACK="\e[30m"
 RED="\e[31m"
@@ -12,6 +16,20 @@ BG_MAGENTA="\e[45m"
 BG_CYAN="\e[46m"
 NC="\e[0m" #No Color
 
+#######################################
+# Function that initializes html, css and js with predefined templates
+# Globals:
+# Arguments:
+# Outputs:
+#   Writes location to stdout
+#######################################
+
+initialize_components_with_templates() {
+	cat ${SCRIPT_DIR}/templates/html >| $1/index.html
+	cat ${SCRIPT_DIR}/templates/css >|  $1/css/style.css
+	cat ${SCRIPT_DIR}/templates/css >|  $1/scss/style.scss
+	cat ${SCRIPT_DIR}/templates/js >|   $1/js/script.js
+}
 
 #check if arguments are empty
 if [ $# -eq 0 ];  then
@@ -52,6 +70,10 @@ cd ${newDir}
 
 mkdir pages css fonts images js scss
 touch index.html ./css/style.css ./js/script.js ./scss/style.scss 
+
+#Invoking function to initialize components with template values
+currentPath=$(pwd)
+initialize_components_with_templates ${currentPath}
 
 #copy the "ideal" .gitignore file
 GITIGNORE_PATH="${HOME}/Projects/Web/trivia/gitignore-ideal/.gitignore"
