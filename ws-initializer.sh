@@ -1,8 +1,7 @@
 #!/bin/bash
 
 #Initial directory (script file location)
-SCRIPT_DIR=$(pwd)
-echo "${SCRIPT_DIR}"
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 #Colors
 BLACK="\e[30m"
@@ -19,16 +18,18 @@ NC="\e[0m" #No Color
 #######################################
 # Function that initializes html, css and js with predefined templates
 # Globals:
+# 	SCRIPT_DIR - directory where the script itself resides
 # Arguments:
+#	$1 - current directory path (where website structure has to be created)	
 # Outputs:
-#   Writes location to stdout
+#   Writes template files content into corresponding files
 #######################################
 
 initialize_components_with_templates() {
-	cat ${SCRIPT_DIR}/templates/html >| $1/index.html
-	cat ${SCRIPT_DIR}/templates/css >|  $1/css/style.css
-	cat ${SCRIPT_DIR}/templates/css >|  $1/scss/style.scss
-	cat ${SCRIPT_DIR}/templates/js >|   $1/js/script.js
+	cat "${SCRIPT_DIR}/templates/html" >| $1/index.html
+	cat "${SCRIPT_DIR}/templates/css"  >| $1/css/style.css
+	cat "${SCRIPT_DIR}/templates/css"  >| $1/scss/style.scss
+	cat "${SCRIPT_DIR}/templates/js"   >| $1/js/script.js
 }
 
 #check if arguments are empty
